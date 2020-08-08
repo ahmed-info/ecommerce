@@ -1,0 +1,16 @@
+[
+    {
+        "baseFilePath": "\\app\\User.php",
+        "pathsTemplate": [
+            "%2F${lowerCase(words[0][0][0])||'app'}%2F${pascalCase(words[0][1][0])||'User'}.php"
+        ],
+        "templateId": "9bee9f7d-c582-4259-ab80-69838b33d854"
+    },
+    {
+        "baseFilePath": "\\app\\User.php",
+        "pathsTemplate": [
+            "%2F${lowerCase(words[0][0][0])||'app'}%2F${pascalCase(words[0][1][0])||'User'}.php"
+        ],
+        "templateId": "1889894b-dcd4-4920-a2ae-8ac5177c8bc6"
+    }
+]
