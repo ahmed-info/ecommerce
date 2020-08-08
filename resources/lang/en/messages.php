@@ -19,7 +19,10 @@ return [
     "offer name count characters"=> 'offer name must be less than 100 characters',
     "offer name is exist"=>'offer name is exist',
     "offer price is required" =>'offer price is required',
-    "offer details is required" => 'offer details is required'
-
-
+    "offer details is required" => 'offer details is required',
+    "Add your offer" =>'Add your offer',
+    "Offer Name" =>'Offer Name',
+    "Offer Price"=>'Offer Price',
+    "Details"=>'Details',
+    "Save Offers"=>'Save'
 ];

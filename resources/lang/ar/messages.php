@@ -20,6 +20,10 @@ return [
     "offer name is exist"=>'اسم العرض موجود',
     "offer price is required" => 'سعر العرض مطلوب',
     "offer price must be number" => 'سعر العرض يجب ان يكون رقم',
-    "offer details is required" => 'تفاصيل العرض مطلوبة'
-
+    "offer details is required" => 'تفاصيل العرض مطلوبة',
+    "Add your offer"=>'اضافة عرض جديد',
+    "Offer Name"=>'اسم العرض',
+    "Offer Price"=>'سعر العرض',
+    "Details"=>'تفاصيل العرض',
+    "Save Offers"=>'حفظ'
 ];

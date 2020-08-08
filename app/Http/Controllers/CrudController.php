@@ -74,4 +74,9 @@ class CrudController extends Controller
             'details.required'=> __('messages.offer details is required')
         ];
     }
+
+    public function getAllOffers(){
+        $offers = Offer::get();
+        return view();
+    }
 }

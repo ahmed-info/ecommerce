@@ -168,6 +168,7 @@ Route::get('fillable', 'CrudController@getOffers');
                 //Route::get('store', 'CrudController@store');
             Route::get('create', 'CrudController@create');  
             Route::post('store', 'CrudController@store')->name('offers.store');
+            Route::get('all','CrudController@getAllOffers');
         });
     });
     

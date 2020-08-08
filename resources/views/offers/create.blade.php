@@ -89,7 +89,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Add your offer
+                    {{__('messages.Add your offer')}}
                 </div> 
                 @if (Session::has('success'))
                      <div class="alert alert-success" role="alert">
@@ -101,7 +101,7 @@
             <form method="POST" action="{{route('offers.store')}}">
                 @csrf
                     <div class="form-group">
-                      <label for="name">Offer Name</label>
+                    <label for="name">{{__('messages.Offer Name')}}</label>
                       <input type="text" class="form-control" name="name" placeholder="Enter offer name">
                       @error('name')
                     <small class="form-text text-danger">{{$message}}</small> 
@@ -109,7 +109,7 @@
       
                     </div>
                     <div class="form-group">
-                      <label for="price">Offer Price</label>
+                    <label for="price">{{__('messages.Offer Price')}}</label>
                       <input type="text" class="form-control" name="price" placeholder="enter price">
                       @error('price')
                       <small class="form-text text-danger">{{$message}}</small>
@@ -117,7 +117,7 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="details">Details</label>
+                    <label for="details">{{__('messages.Details')}}</label>
                         <input type="text" class="form-control" name="details" placeholder="enter details">
                         @error('details')
                         <small class="form-text text-danger">{{$message}}</small>
@@ -125,7 +125,7 @@
                         
                       </div>
 
-                    <button type="submit" class="btn btn-primary">Save Offers</button>
+                    <button type="submit" class="btn btn-primary">{{__('messages.Save Offers')}}</button>
                   </form>
                 
             </div>
