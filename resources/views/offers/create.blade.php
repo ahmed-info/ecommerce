@@ -91,39 +91,61 @@
                 <div class="title m-b-md">
                     {{__('messages.Add your offer')}}
                 </div> 
-                @if (Session::has('success'))
+                @if (Session::has('success add'))
                      <div class="alert alert-success" role="alert">
-                         {{Session::get('success')}}
+                         {{Session::get('success add')}}
                   </div>
                   <br>                   
                 @endif
                 
-            <form method="POST" action="{{route('offers.store')}}">
+            <form method="POST" action="{{route('offers.store')}}" enctype="multipart/form-data">
                 @csrf
+                <div class="form-group">
+                  <label for="photo">{{__('messages.Select Photo')}}</label>
+                    <input type="file" class="form-control" name="photo">
+                    @error('photo')
+                  <small class="form-text text-danger">{{$message}}</small> 
+                    @enderror
+                  </div>
+
                     <div class="form-group">
-                    <label for="name">{{__('messages.Offer Name')}}</label>
-                      <input type="text" class="form-control" name="name" placeholder="Enter offer name">
-                      @error('name')
+                    <label for="name_ar">{{__('messages.Offer Name_ar')}}</label>
+                      <input type="text" class="form-control" name="name_ar" placeholder="Enter offer name">
+                      @error('name_ar')
                     <small class="form-text text-danger">{{$message}}</small> 
                       @enderror
-      
                     </div>
+
+                    <div class="form-group">
+                      <label for="name_en">{{__('messages.Offer Name_en')}}</label>
+                        <input type="text" class="form-control" name="name_en" placeholder="Enter offer name">
+                        @error('name_en')
+                      <small class="form-text text-danger">{{$message}}</small> 
+                        @enderror
+                      </div>
+
                     <div class="form-group">
                     <label for="price">{{__('messages.Offer Price')}}</label>
                       <input type="text" class="form-control" name="price" placeholder="enter price">
                       @error('price')
                       <small class="form-text text-danger">{{$message}}</small>
                       @enderror
-
                     </div>
                     <div class="form-group">
-                    <label for="details">{{__('messages.Details')}}</label>
-                        <input type="text" class="form-control" name="details" placeholder="enter details">
-                        @error('details')
+                    <label for="details_ar">{{__('messages.Details_ar')}}</label>
+                        <input type="text" class="form-control" name="details_ar" placeholder="enter details">
+                        @error('details_ar')
                         <small class="form-text text-danger">{{$message}}</small>
-                        @enderror
-                        
+                        @enderror     
                       </div>
+
+                      <div class="form-group">
+                        <label for="details_en">{{__('messages.Details_en')}}</label>
+                            <input type="text" class="form-control" name="details_en" placeholder="enter details">
+                            @error('details_en')
+                            <small class="form-text text-danger">{{$message}}</small>
+                            @enderror     
+                          </div>
 
                     <button type="submit" class="btn btn-primary">{{__('messages.Save Offers')}}</button>
                   </form>

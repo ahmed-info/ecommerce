@@ -21,8 +21,19 @@ return [
     "offer price is required" =>'offer price is required',
     "offer details is required" => 'offer details is required',
     "Add your offer" =>'Add your offer',
+    "Offer Name_en" =>'english Offer Name',
     "Offer Name" =>'Offer Name',
+
+    "Offer Name_ar" =>'arabic Offer Name',
     "Offer Price"=>'Offer Price',
+    "Details_en"=>'english Details',
+    "Details_ar"=>'arabic Details',
     "Details"=>'Details',
-    "Save Offers"=>'Save'
+    "Save Offers"=>'Save',
+    "success add"=>'success',
+    "success update"=>'Success Updated',
+    "operation"=>'Operation',
+    "update"=>'Update',
+    "edit offer"=>'Edit Offer',
+    "Select Photo"=>'Select Photo',
 ];

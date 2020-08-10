@@ -22,8 +22,19 @@ return [
     "offer price must be number" => 'سعر العرض يجب ان يكون رقم',
     "offer details is required" => 'تفاصيل العرض مطلوبة',
     "Add your offer"=>'اضافة عرض جديد',
+    "Offer Name_ar"=>'اسم العرض بالعربي',
     "Offer Name"=>'اسم العرض',
+    "Offer Name_en"=>'اسم العرض بالانكليزي',
     "Offer Price"=>'سعر العرض',
+    "Details_ar"=>'تفاصيل العرض بالعربي',
     "Details"=>'تفاصيل العرض',
-    "Save Offers"=>'حفظ'
+
+    "Details_en"=>'تفاصيل العرض بالانكليزي',
+    "Save Offers"=>'حفظ',
+    "success add"=>'تم اضافة العرض بنجاح',
+    "success update"=>'تم التحديث بنجاح',
+    "operation"=>'الاجراءات',
+    "update"=>'تحديث',
+    "edit offer"=>'تعديل العرض',
+    "Select Photo"=>'اختر صورة العرض',
 ];

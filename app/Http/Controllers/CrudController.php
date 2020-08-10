@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\offerRequest;
+use App\Http\Requests\offerRequestUpdate;
 use App\Models\Offer;
+use App\Traits\OfferTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Lang;
+use LaravelLocalization;
 class CrudController extends Controller
 {
+    use OfferTrait;
     public function __construct()
     {
         
@@ -34,49 +39,73 @@ class CrudController extends Controller
         return view('offers.create');
     }
 
-    public function store(Request $request)
+    public function store(offerRequest $request)
     {
         //validate data before insert database
-        $rules = $this->getRules();
-        $messages = $this-> getMessages();
+        
+        $rules = $request->rules();
+        $messages = $request->messages();
         $validator = Validator::make($request->all(), $rules, $messages);
 
-    if($validator->fails()){
-        //return $validator->errors()->first();
-        return redirect()->back()->withErrors($validator)->withInput($request->all());
-    }
+        if($validator->fails()){
+            //return $validator->errors()->first();
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        //save photo in folder
+        $file_name = $this-> saveImages($request->photo, 'images/offers'); //this method in trait
+
+        
         //insert
         Offer::create([
-            'name' => $request->name,
+            'photo'=> $file_name,
+            'name_ar' => $request->name_ar,
+            'name_en' => $request->name_en,
             'price'=> $request->price,
-            'details'=> $request->details
+            'details_ar'=> $request->details_ar,
+            'details_en'=> $request->details_en
+
         ]);
-        return redirect()->back()->with(['success'=>'تم اضافة العرض بنجاح']); //session
+        //$msg = {{__('messages.success')}};
+        $msg = $var = Lang::get('messages.success add');
+        return redirect()->back()->with(['success add'=> $msg]); //session
     }
 
-    protected function getRules()
-    {
-        return $rule = [
-            //role
-            'name'=> 'required|max:100|unique:offers,name',
-            'price'=> 'required|numeric',
-            'details'=>'required'
-        ];
-    }
-
-    protected function getMessages(){
-        return $message = [
-            'name.required' =>__('messages.offer name required'),
-            'name.max'=>__('messages.offer name count characters'),
-            'name.unique'=>__('messages.offer name is exist'),
-            'price.required'=>__('messages.offer price is required'),
-            'price.numeric'=>__('messages.offer price must be number'),
-            'details.required'=> __('messages.offer details is required')
-        ];
-    }
 
     public function getAllOffers(){
-        $offers = Offer::get();
-        return view();
+        $offers = Offer::select('id','price','name_'.LaravelLocalization::getCurrentLocale().' as name',
+        'details_'.LaravelLocalization::getCurrentLocale().' as details')->get();
+        return view('offers.all', compact('offers'));
+    }
+    public function editOffer($offer_id)
+    {
+        //$offer = Offer::findOrFail($offer_id); //check id is exist in database or not
+        $offer = Offer::find($offer_id); //search on given table id only
+        if(!$offer){
+            return redirect()->back();
+        }else{
+            $offer = Offer::select('id','name_ar','name_en','price','details_ar','details_en')->find($offer_id); //find == where
+            return view('offers.edit',compact('offer'));
+        }
+    }
+    public function updateOffer(offerRequestUpdate $request, $offer_id){
+        //validation request
+
+        //check offer exist
+        $offer = Offer::find($offer_id); //find == where
+        if(!$offer)
+            return redirect()->back();
+
+        //update data
+
+        /* //custome update field
+        $offer-> update([
+            'name_ar'=> $request-> name_ar,
+            'name_en'=>$request-> name_en,
+        ]);
+        */
+        $offer-> update($request->all()); //update all
+
+        $msgUpdate = $var = Lang::get('messages.success update');
+        return redirect()->back()->with(['success update'=> $msgUpdate]); //session
     }
 }
