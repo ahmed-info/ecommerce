@@ -174,6 +174,7 @@ Route::get('fillable', 'CrudController@getOffers');
 
             Route::get('all','CrudController@getAllOffers');
         });
+        Route::get('youtube','YoutubeController@getVideo');
     });
     
     
