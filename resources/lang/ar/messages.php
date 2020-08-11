@@ -33,8 +33,11 @@ return [
     "Save Offers"=>'حفظ',
     "success add"=>'تم اضافة العرض بنجاح',
     "success update"=>'تم التحديث بنجاح',
+    "successdeleted"=>'تم الحذف بنجاح',
     "operation"=>'الاجراءات',
     "update"=>'تحديث',
     "edit offer"=>'تعديل العرض',
     "Select Photo"=>'اختر صورة العرض',
+    "delete"=>'حذف',
+    "offer not exist" => 'العرض غير موجود',
 ];

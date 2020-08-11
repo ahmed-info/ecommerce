@@ -32,7 +32,7 @@ class IncreaseCounter
 
     public function updateViewer($video)
     {
-       $video->viewer = $video->viewer +1;
+       $video->viewer = $video->viewer+1;
        $video->save();
     }
 

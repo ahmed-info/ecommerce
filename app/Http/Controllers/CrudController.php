@@ -63,7 +63,6 @@ class CrudController extends Controller
             'price'=> $request->price,
             'details_ar'=> $request->details_ar,
             'details_en'=> $request->details_en
-
         ]);
         //$msg = {{__('messages.success')}};
         $msg = $var = Lang::get('messages.success add');
@@ -107,5 +106,18 @@ class CrudController extends Controller
 
         $msgUpdate = $var = Lang::get('messages.success update');
         return redirect()->back()->with(['success update'=> $msgUpdate]); //session
+    }
+
+    public function delete($offer_id){
+        //check if offer id exists
+        $offer = Offer::find($offer_id); //Offer::where('id',offer_id)-> first();
+        if(!$offer){
+            return redirect()->back()->with(['error'=> __('messages.offer not exist')]);
+        }else{
+        $offer->delete();
+            return redirect()
+                ->route('offers.all')
+                ->with(['successdeleted'=> __('messages.successdeleted')]);
+        }
     }
 }

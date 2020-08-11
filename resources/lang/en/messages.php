@@ -33,7 +33,10 @@ return [
     "success add"=>'success',
     "success update"=>'Success Updated',
     "operation"=>'Operation',
+    "successdeleted"=>'Success Deleted',
     "update"=>'Update',
     "edit offer"=>'Edit Offer',
     "Select Photo"=>'Select Photo',
+    "delete"=>'Delete',
+    "offer not exist"=>'Offer Not Exist',
 ];
