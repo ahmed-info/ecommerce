@@ -68,7 +68,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Video viewer (70)
+                    Video viewer ({{$video->viewer}})
                 </div> 
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/sCfEbLTaGR0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
