@@ -1,8 +1,9 @@
 <?php
 namespace App\Traits;
 
-trait offerTrait
+Trait OfferTrait
 {
+    public $strpath = 'images/offers';
     function saveImages($photo, $folder){
         $file_extension = $photo -> getClientOriginalExtension();
         $file_name = time().'.'.$file_extension;

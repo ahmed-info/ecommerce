@@ -6,10 +6,14 @@ use App\Http\Requests\offerRequest;
 use App\Http\Requests\offerRequestUpdate;
 use App\Models\Offer;
 use App\Traits\OfferTrait;
+use App\Events\VideoViewerEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Lang;
 use LaravelLocalization;
+use Illuminate\Support\Facades\Storage;
+
+
 class CrudController extends Controller
 {
     use OfferTrait;
@@ -42,7 +46,7 @@ class CrudController extends Controller
     public function store(offerRequest $request)
     {
         //validate data before insert database
-        
+        /*
         $rules = $request->rules();
         $messages = $request->messages();
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -51,9 +55,10 @@ class CrudController extends Controller
             //return $validator->errors()->first();
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+        */
         //save photo in folder
         $file_name = $this-> saveImages($request->photo, 'images/offers'); //this method in trait
-
+        
         
         //insert
         Offer::create([
@@ -71,9 +76,11 @@ class CrudController extends Controller
 
 
     public function getAllOffers(){
-        $offers = Offer::select('id','price','name_'.LaravelLocalization::getCurrentLocale().' as name',
+        $offers = Offer::select('id','photo','price','name_'.LaravelLocalization::getCurrentLocale().' as name',
         'details_'.LaravelLocalization::getCurrentLocale().' as details')->get();
-        return view('offers.all', compact('offers'));
+        foreach($offers as $offer){
+            return view('offers.all', compact('offers'));
+        }
     }
     public function editOffer($offer_id)
     {
@@ -82,7 +89,7 @@ class CrudController extends Controller
         if(!$offer){
             return redirect()->back();
         }else{
-            $offer = Offer::select('id','name_ar','name_en','price','details_ar','details_en')->find($offer_id); //find == where
+            $offer = Offer::select('id','photo','name_ar','name_en','price','details_ar','details_en')->find($offer_id); //find == where
             return view('offers.edit',compact('offer'));
         }
     }

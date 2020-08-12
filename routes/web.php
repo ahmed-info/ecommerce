@@ -172,12 +172,25 @@ Route::get('fillable', 'CrudController@getOffers');
             Route::get('edit/{offer_id}', 'CrudController@editOffer');  
             Route::post('update/{offer_id}', 'CrudController@updateOffer')->name('offers.update');
             Route::get('delete/{offer_id}', 'CrudController@delete')->name('offers.delete');
-
-
             Route::get('all','CrudController@getAllOffers')->name('offers.all');
+
+
         });
         Route::get('youtube','YoutubeController@getVideo');
     });
+    ################### start ajax ###################
+    Route::group(['prefix' => 'ajaxoffers'], function () {
+        Route::get('create', 'OfferController@create');
+        Route::post('store', 'OfferController@store')->name('ajax.offers.store');
+
+    });
+        
+
+
+      ################### end ajax ###################
     
-    
-   
+##################### start Authentication && Guards #################
+
+
+
+##################### end Authentication && Guards #################

@@ -12,5 +12,12 @@
             "%2F${lowerCase(words[0][0][0])||'app'}%2F${pascalCase(words[0][1][0])||'User'}.php"
         ],
         "templateId": "1889894b-dcd4-4920-a2ae-8ac5177c8bc6"
+    },
+    {
+        "baseFilePath": "\\app\\Http\\Controllers\\CrudController.php",
+        "pathsTemplate": [
+            "%2F${lowerCase(words[0][0][0])||'app'}%2F${pascalCase(words[0][1][0])||'Http'}%2F${pascalCase(words[0][2][0])||'Controllers'}%2F${pascalCase(words[0][3][0])||'CrudController'}.php"
+        ],
+        "templateId": "bccf4fa0-fc09-4727-b136-c466b3c896a6"
     }
 ]
