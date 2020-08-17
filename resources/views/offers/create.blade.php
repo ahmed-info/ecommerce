@@ -61,6 +61,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            
         </style>
     </head>
     <body>
@@ -147,7 +148,7 @@
                             @enderror     
                           </div>
 
-                    <button type="submit" class="btn btn-primary">{{__('messages.Save Offers')}}</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                   </form>
                 
             </div>

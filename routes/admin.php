@@ -1,4 +1,4 @@
 <?php
-Route::get('/admin', function () {
+Route::get('/admin2', function () {
     return 'Hello Admin';
 });

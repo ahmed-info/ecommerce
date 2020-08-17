@@ -7,6 +7,7 @@ use App\Http\Requests\offerRequestUpdate;
 use App\Models\Offer;
 use App\Traits\OfferTrait;
 use App\Events\VideoViewerEvent;
+use App\Scopes\OfferScope;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Lang;
@@ -69,6 +70,7 @@ class CrudController extends Controller
             'details_ar'=> $request->details_ar,
             'details_en'=> $request->details_en
         ]);
+         
         //$msg = {{__('messages.success')}};
         $msg = $var = Lang::get('messages.success add');
         return redirect()->back()->with(['success add'=> $msg]); //session
@@ -76,11 +78,19 @@ class CrudController extends Controller
 
 
     public function getAllOffers(){
+        /*
         $offers = Offer::select('id','photo','price','name_'.LaravelLocalization::getCurrentLocale().' as name',
-        'details_'.LaravelLocalization::getCurrentLocale().' as details')->get();
-        foreach($offers as $offer){
-            return view('offers.all', compact('offers'));
-        }
+        'details_'.LaravelLocalization::getCurrentLocale().' as details')->get(); //return collection off all result
+        */
+
+        ########## paginate resilt ################
+         $offers = Offer::select('id',
+        'photo',
+        'price',
+        'name_'.LaravelLocalization::getCurrentLocale().' as name',
+        'details_'.LaravelLocalization::getCurrentLocale().' as details')->paginate(PAGINATION_COUNT);
+        //return view('offers.all', compact('offers'));
+        return view('offers.paginations', compact('offers'));
     }
     public function editOffer($offer_id)
     {
@@ -126,5 +136,20 @@ class CrudController extends Controller
                 ->route('offers.all')
                 ->with(['successdeleted'=> __('messages.successdeleted')]);
         }
+    }
+
+    public function getAllInactiveOffers(){
+        //where whereNull whereNotNull whereIn
+        //return $offers = Offer::whereNotNull('details_en')->get();
+        //return $offers = Offer::inActive()->get(); //functin scope
+        //return $offer = Offer::Invalid()->get();
+
+        //global scope
+        //return $offer = Offer::get();
+
+
+        //remove global scope
+        return $offer = Offer::withoutGlobalScope(OfferScope::class)->get();
+        
     }
 }
